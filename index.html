@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+    <script>
+
+        function computerPlay(){
+            const choices = ['Rock', 'Paper', 'Scissors'];
+            const randChoice = Math.floor(Math.random() * choices.length);
+
+            return choices[randChoice];
+        }
+
+        function playRound(){
+            var compChoice = computerPlay();
+            var playerChoice = prompt("Choose Rock, Paper or Scissors");
+            
+            var compLow = compChoice.toLowerCase();
+            var playerLow = playerChoice.toLowerCase();
+
+            console.log(compLow);
+
+            if(playerLow == 'rock' | playerLow == 'paper' | playerLow == 'scissors'){
+                if(playerLow == 'rock'){
+                    if(compLow == 'rock'){
+                        console.log('Tie! Rock does not beat Rock.');
+                        return 'Tie! Rock does not beat Rock.';
+                    }else if(compLow == 'paper'){
+                        console.log('You lose! Paper beats rock');
+                        return 'You lose! Paper beats rock';
+                    }else{
+                        console.log('You win! Rock beats scissors');
+                        return 'You win! Rock beats scissors';
+                    }
+                }else if(playerLow == 'paper'){
+                    if(compLow == 'rock'){
+                        console.log('You win! Paper beats rock');
+                        return 'You win! Paper beats rock';
+                    }else if(compLow == 'paper'){
+                        console.log("Tie! Paper doesn't beat paper");
+                        return "Tie! Paper doesn't beat paper";
+                    }else{
+                        console.log('You lose! Scissors beats paper');
+                        return 'You lose! Scissors beats paper';
+                    }
+                    
+                    
+
+                }else {
+                    if(compLow == 'rock'){
+                        console.log('You lose! Rock beats scissors');
+                        return 'You lose! Rock beats scissors';
+                    }else if(compLow == 'paper'){
+                        console.log('Scissors beats paper. You win!');
+                        return "Scissors beats paper. You win!";
+                    }else{
+                        console.log('Tie! Scissors does not beat scissors');
+                        return 'Tie! Scissors does not beat scissors';
+                    }
+
+                }
+                
+            }else {
+                console.log('Input not valid');
+            }
+
+
+
+        }
+
+        function game(){
+            for(let i =0; i< 5; i++){
+                playRound()
+            }
+        }
+    </script>
+    
+</body>
+</html>
