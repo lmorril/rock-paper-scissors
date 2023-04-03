@@ -8,7 +8,24 @@
 </head>
 <body>
 
+    <button id="rock">Rock</button>
+    <button id = "paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <div id="results">
+
+    </div>
+
     <script>
+        butts = document.querySelectorAll("button");
+        butts.forEach((button) => {
+            button.addEventListener('click', () => {
+                playRound(button.getAttribute('id'));
+            })
+        })
+        results = document.querySelector("#results");
+        playerScore = 0;
+        computerScore = 0;
+        
 
         function computerPlay(){
             const choices = ['Rock', 'Paper', 'Scissors'];
@@ -17,36 +34,76 @@
             return choices[randChoice];
         }
 
-        function playRound(){
+        function playRound(playerChoice){
+            if(playerScore == 5){
+                results.textContent = "You win";
+                return
+            }else if(computerScore==5){
+                results.textContent = "You lose";
+                return
+            }
+            results.textContent = "";
             var compChoice = computerPlay();
-            var playerChoice = prompt("Choose Rock, Paper or Scissors");
             
             var compLow = compChoice.toLowerCase();
             var playerLow = playerChoice.toLowerCase();
 
-            console.log(compLow);
+            const para = document.createElement('p')
+            para.textContent = compChoice;
+            results.appendChild(para);
 
+
+            const message = document.createElement('p');
+            const score = document.createElement('p')
             if(playerLow == 'rock' | playerLow == 'paper' | playerLow == 'scissors'){
                 if(playerLow == 'rock'){
                     if(compLow == 'rock'){
-                        console.log('Tie! Rock does not beat Rock.');
+                        message.textContent = ('Tie! Rock does not beat Rock.');
+                        results.appendChild(message);
+
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return 'Tie! Rock does not beat Rock.';
                     }else if(compLow == 'paper'){
-                        console.log('You lose! Paper beats rock');
+                        message.textContent =('You lose! Paper beats rock');
+                        results.appendChild(message);
+
+                        ++computerScore;
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return 'You lose! Paper beats rock';
                     }else{
-                        console.log('You win! Rock beats scissors');
+                        message.textContent =('You win! Rock beats scissors');
+                        results.appendChild(message);
+
+                        ++playerScore;
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
+
                         return 'You win! Rock beats scissors';
                     }
                 }else if(playerLow == 'paper'){
                     if(compLow == 'rock'){
-                        console.log('You win! Paper beats rock');
+                        message.textContent =('You win! Paper beats rock');
+                        results.appendChild(message);
+                        ++playerScore;
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return 'You win! Paper beats rock';
                     }else if(compLow == 'paper'){
-                        console.log("Tie! Paper doesn't beat paper");
+                        message.textContent =("Tie! Paper doesn't beat paper");
+                        results.appendChild(message);
+
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return "Tie! Paper doesn't beat paper";
                     }else{
-                        console.log('You lose! Scissors beats paper');
+                        message.textContent =('You lose! Scissors beats paper');
+                        results.appendChild(message);
+
+                        ++computerScore;
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return 'You lose! Scissors beats paper';
                     }
                     
@@ -54,31 +111,44 @@
 
                 }else {
                     if(compLow == 'rock'){
-                        console.log('You lose! Rock beats scissors');
+                        message.textContent =('You lose! Rock beats scissors');
+                        results.appendChild(message);
+
+                        ++computerScore;
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return 'You lose! Rock beats scissors';
                     }else if(compLow == 'paper'){
-                        console.log('Scissors beats paper. You win!');
+                        message.textContent =('Scissors beats paper. You win!');
+                        results.appendChild(message);
+                        ++playerScore;
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return "Scissors beats paper. You win!";
                     }else{
-                        console.log('Tie! Scissors does not beat scissors');
+                        message.textContent =('Tie! Scissors does not beat scissors');
+                        results.appendChild(message);
+                        score.textContent = "Computer:" + computerScore + " Player: " + playerScore;
+                        results.appendChild(score);
                         return 'Tie! Scissors does not beat scissors';
                     }
 
                 }
                 
             }else {
-                console.log('Input not valid');
+                message.textContent =('Input not valid');
+                results.appendChild(message);
             }
 
 
 
         }
 
-        function game(){
+        /* function game(){
             for(let i =0; i< 5; i++){
                 playRound()
             }
-        }
+        } */
     </script>
     
 </body>
